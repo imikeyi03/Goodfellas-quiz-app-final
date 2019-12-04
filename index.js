@@ -3,7 +3,7 @@ const STORE = {
         
         // Question 1
         {
-            question: "Who kills loudmouth Morrie?",
+            question: "1. Who kills loudmouth Morrie?",
             choices: [
                 "Henry",
                 "The Joker",
@@ -15,7 +15,7 @@ const STORE = {
        
         // Question 2
         {
-            question: "What African-American actor played Stack Edwards?",
+            question: "2. What African-American actor played Stack Edwards?",
             choices: [
                 "Morgan Freeman",
                 "Samuel L. Jackson",
@@ -28,7 +28,7 @@ const STORE = {
     
          // Question 3
          {
-            question: "What U.S city does Henry heavily distribute cocaine to?",
+            question: "3. What U.S city does Henry heavily distribute cocaine to?",
             choices: [
                 "Pittsburgh",
                 "Los Angeles",
@@ -41,7 +41,7 @@ const STORE = {
 
          // Question 4
          {
-            question: "How many F-bombs are dropped during the course of the film?",
+            question: "4. How many F-bombs are dropped during the course of the film?",
             choices: [
                 "108",
                 "203",
@@ -54,7 +54,7 @@ const STORE = {
     
      // Question 5
         {
-            question: "Who directed the movie Goodfellas?",
+            question: "5. Who directed the movie Goodfellas?",
             choices: [
                 "Hugh Jackman",
                 "Martin Scorsesse",
@@ -65,7 +65,9 @@ const STORE = {
         }
     
     ],
-    currentQuestion: 0,
-    score: 0
 };
 
+//These variables will store the quiz score and current question being displayed
+
+let currentQuestion = 0;
+let score = 0;
