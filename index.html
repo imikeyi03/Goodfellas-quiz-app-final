@@ -9,17 +9,43 @@
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-    <main class="container">
-        <header class="headerTitle">
+    <main>
+        <!-- This will be the beginning of the quiz page while the header stays static -->
+        <header>
             <h1>Goodfellas Quiz</h1>
         </header>
-        <section class="introQuizButton">
-            <button type="button" id="start">START</button>
+
+        <section class="start-quiz">
+            <p class="subheading">"As far back as I can remember, I always wanted to be a gangster"</p>
+            <button class="start-btn">START</button>
         </section>
-        <section class="totalQuestionsCallout">
-            <p>5 Total Questions</p>
+
+        <!-- Quiz questions-->
+
+        <section class="questions-container">
+            <h2 class="question"></h2>
+            <p class="score"> Score: </p>
+            <ul class="list"> </ul>
+
+            <section class="submit-container">
+                <button class="submit-btn">SUBMIT</button>
+            </section>
+            <section>
+                <button class="next-btn">NEXT</button>
+            </section>
+
+            <p class="question-number"></p>
+        </section>
+
+        <!-- Results Page -->
+
+        <section>
+            <p class="end-score"></p>
+            <button class="restart-btn">RESTART</button>
         </section>
     </main>
+
+    <!-- END -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="index.js"></script>
 </body>

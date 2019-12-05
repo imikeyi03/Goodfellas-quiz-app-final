@@ -71,3 +71,30 @@ const STORE = {
 
 let currentQuestion = 0;
 let score = 0;
+
+
+//When a user clicks the start button, the quiz will begin
+
+function startQuiz() {
+    $('#startbtn').on('click', function (event) { 
+        renderQuestion();
+});
+}
+
+
+// This function will render the proper question to the DOM
+function renderQuestion() {
+    let question = STORE.questions[STORE.currentQuestion];
+
+    const questionHtml = $(`
+    <form id="js-questions" class="question-form">
+        <fieldset>
+            <legend>${question.question}</legend>
+        </fieldset>
+
+    </form>`);
+}
+
+
+
+startQuiz();
