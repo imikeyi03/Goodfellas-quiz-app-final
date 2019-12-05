@@ -1,7 +1,5 @@
-const STORE = {
-    questions: [
-        
-        // Question 1
+const STORE = [
+         // Question 1
         {
             question: "1. Who kills loudmouth Morrie?",
             choices: [
@@ -10,7 +8,7 @@ const STORE = {
                 "Tommy",
                 "Vinnie"
             ],
-            answer: "Henry"
+            correct: 0
         },
        
         // Question 2
@@ -22,7 +20,7 @@ const STORE = {
                 "Ice T",
                 "Michael Jordan"
             ],
-            answer: "Samuel L. Jackson"
+            correct: 1
         },
     
     
@@ -35,7 +33,7 @@ const STORE = {
                 "Seattle",
                 "Dallas"
             ],
-            answer: "Pittsburgh"
+            correct: 0
         },
     
 
@@ -48,7 +46,7 @@ const STORE = {
                 "90",
                 "300"
             ],
-            answer: "300"
+            correct: 3
         },
     
     
@@ -61,40 +59,93 @@ const STORE = {
                 "Danny Devito",
                 "JK Rowling"
             ],
-            answer: "Martin Scorsesse"
-        }
-    
-    ],
-};
+            correct: 1
+        },
+    ];
 
-//These variables will store the quiz score and current question being displayed
 
-let currentQuestion = 0;
+let current = 0;
 let score = 0;
 
 
-//When a user clicks the start button, the quiz will begin
-
-function startQuiz() {
-    $('#startbtn').on('click', function (event) { 
-        renderQuestion();
-});
-}
-
-
-// This function will render the proper question to the DOM
-function renderQuestion() {
-    let question = STORE.questions[STORE.currentQuestion];
-
-    const questionHtml = $(`
-    <form id="js-questions" class="question-form">
-        <fieldset>
-            <legend>${question.question}</legend>
-        </fieldset>
-
-    </form>`);
-}
-
-
-
-startQuiz();
+$(document).ready(function(){
+    // Create an event listener to listen for a click on the Start Quiz button
+    $(".start-btn").click(function(){
+       $('.start-quiz').hide();
+       $('.next').hide();
+       $('.questions-container').show();
+       displayQuestion();
+        $('.score').text('SCORE: '+ score + '/5');
+      console.log("Start Quiz button clicked");
+    });
+    
+    // Create an event listener to listen for a click on the Next button
+    $(".next-btn").click(function(event){
+      console.log("Next button clicked");
+      displayQuestion();
+      $('.next').hide();
+      $('.submit-container').show();
+    });
+    
+    $(".submit-btn").click(function(event){
+      if($('li.selected').length){
+        var answer = $('li.selected').attr('id');
+        checkAnswer(answer);
+        $('.next').show();
+        $('.submit-container').hide();
+      } else {
+        alert('Please select an answer');
+      }
+    });
+    
+    // Create an event listener to listen for a click on the Retake button and refresh the page
+    $(".restart-btn").click(function(){
+    location.reload();
+      console.log("Retake button clicked");
+    });
+    
+    //Click listener when clicking on a list item to change the color of the background
+    $('ul.list').on('click', 'li', function(event) {
+      $('.selected').removeClass();
+      $(this).addClass('selected');
+    });
+    
+  });
+  
+  //***************FUNCTIONS**************
+  function displayQuestion(){
+    $('.question-number').text('Question Number: '+(current + 1)+"/10" );
+    if(current < STORE.length){
+      var listQuestion = STORE[current];
+      $('h2').text(listQuestion.question);
+      $('ul.list').html('');
+      for (var i = 0; i < listQuestion.choices.length; i++) {
+        $('ul.list').append('<li id = "'+i+'">'+listQuestion.choices[i] +'</li>');
+      }
+    } else {
+      // show summary that says how many you got correct
+      displayScore();
+    }
+  }
+  
+  // Checks answer from the array to see if the one chosen is the one that is correct
+  function checkAnswer(answer){
+    var listQuestion = STORE[current];
+    if(listQuestion.correct == answer){
+      score++;
+      $('li.selected').addClass('correct');
+    } else {
+      $('li.selected').addClass('incorrect');
+      $('listQuestion.correct').addClass('correct');
+    }
+    $('.score').text('SCORE: '+ score + '/5');
+    current++;
+  }
+  
+  //Display score
+  function displayScore(){
+    $('.questions-container').hide();
+    $('.end-quiz').show();
+    $('.end-score').text("DONE! Your score is: " +score + '/5');
+  }
+  

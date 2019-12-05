@@ -97,3 +97,7 @@ ul {
     background-color: rgb(46, 46, 46);
     color: white;
   }
+
+  .score {
+      margin-top: 20px;;
+  }
