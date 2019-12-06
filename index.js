@@ -88,8 +88,8 @@ $(document).ready(function(){
     });
     
     $(".submit-btn").click(function(event){
-      if($('li.selected').length){
-        var answer = $('li.selected').attr('id');
+      if($('input.selected').length){
+        var answer = $('input.selected').attr('id');
         checkAnswer(answer);
         $('.next').show();
         $('.submit-container').hide();
@@ -105,7 +105,7 @@ $(document).ready(function(){
     });
     
     //Click listener when clicking on a list item to change the color of the background
-    $('ul.list').on('click', 'li', function(event) {
+    $('form.list').on('click', 'input', function(event) {
       $('.selected').removeClass();
       $(this).addClass('selected');
     });
@@ -118,9 +118,9 @@ $(document).ready(function(){
     if(current < STORE.length){
       var listQuestion = STORE[current];
       $('h2').text(listQuestion.question);
-      $('ul.list').html('');
+      $('form.list').html('');
       for (var i = 0; i < listQuestion.choices.length; i++) {
-        $('ul.list').append('<li id = "'+i+'">'+listQuestion.choices[i] +'</li>');
+        $('form.list').append('<input type="radio" id = "'+i+'">'+listQuestion.choices[i] +'</li>');
       }
     } else {
       // show summary that says how many you got correct
@@ -133,9 +133,9 @@ $(document).ready(function(){
     var listQuestion = STORE[current];
     if(listQuestion.correct == answer){
       score++;
-      $('li.selected').addClass('correct');
+      $('input.selected').addClass('correct');
     } else {
-      $('li.selected').addClass('incorrect');
+      $('input.selected').addClass('incorrect');
       $('listQuestion.correct').addClass('correct');
     }
     $('.score').text('SCORE: '+ score + '/5');
