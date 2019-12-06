@@ -120,7 +120,7 @@ $(document).ready(function(){
       $('h2').text(listQuestion.question);
       $('form.list').html('');
       for (var i = 0; i < listQuestion.choices.length; i++) {
-        $('form.list').append('<input type="radio" id = "'+i+'">'+listQuestion.choices[i] +'</li>');
+        $('form.list').append('<input type="radio" name="answer" id = "'+i+'">'+listQuestion.choices[i] +'</input>');
       }
     } else {
       // show summary that says how many you got correct
