@@ -87,6 +87,8 @@ $(document).ready(function(){
       $('.submit-container').show();
     });
     
+    // Submit event listener to check answer and show the next question. It also
+    // requires a selection to be made
     $(".submit-btn").click(function(event){
       if($('input.selected').length){
         var answer = $('input.selected').attr('id');
@@ -104,7 +106,7 @@ $(document).ready(function(){
       console.log("Retake button clicked");
     });
     
-    //Click listener when clicking on a list item to change the color of the background
+    //Click listener when clicking on a list item to compare to the correct answer
     $('form.list').on('click', 'input', function(event) {
       $('.selected').removeClass();
       $(this).addClass('selected');
@@ -112,7 +114,7 @@ $(document).ready(function(){
     
   });
   
-  //***************FUNCTIONS**************
+  // Function to render a question to the DOM
   function displayQuestion(){
     $('.question-number').text('Question Number: '+(current + 1)+"/10" );
     if(current < STORE.length){
@@ -142,7 +144,7 @@ $(document).ready(function(){
     current++;
   }
   
-  //Display score
+  //Display final score
   function displayScore(){
     $('.questions-container').hide();
     $('.end-quiz').show();
