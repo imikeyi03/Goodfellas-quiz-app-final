@@ -88,11 +88,13 @@ form {
   
   .correct {
     background-color: rgb(35, 150, 35);
+    display: hide;
   }
   
   .incorrect {
     background-color: rgb(46, 46, 46);
     color: white;
+    display: hide;
   }
 
   .score {

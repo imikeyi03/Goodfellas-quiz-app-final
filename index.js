@@ -86,6 +86,7 @@ let score = 0;
     // Create an event listener to listen for a click on the Next button
     function handleNextButtonClicked() {
     $(".next-btn").click(function(event){
+      $('p.incorrect').text('');
       console.log("Next button clicked");
       displayQuestion();
       $('.next').hide();
@@ -150,6 +151,7 @@ let score = 0;
       $('input.selected').addClass('correct');
     } else {
       $('input.selected').addClass('incorrect');
+      $('p.incorrect').text('The correct answer is ' + listQuestion.choices[current]);
       $('listQuestion.correct').addClass('correct');
     }
     $('.score').text('SCORE: '+ score + '/5');
@@ -171,7 +173,7 @@ let score = 0;
     handleformButtonClicked();
     displayQuestion();
     checkAnswer(answer);
-    displayScore()
+    displayScore();
   }
 
   $(handleQuiz);
