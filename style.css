@@ -7,13 +7,13 @@ body {
     background: #e5e5e5;
     color: #23374d;
     font-family: 'Roboto Mono', monospace;
-    font-size: 16px;
+    font-size: 14px;
     letter-spacing: 2px;
 }
 
 h1 {
     margin: 0px 50px 30px 50px;
-    font-size: 70px;
+    font-size: 40px;
     color:#1089ff;
     padding-bottom: 20px;
     border-bottom: 1px solid #FFF;
