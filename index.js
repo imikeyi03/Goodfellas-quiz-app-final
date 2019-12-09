@@ -1,3 +1,5 @@
+'use strict';
+
 const STORE = [
          // Question 1
         {
@@ -68,8 +70,9 @@ let current = 0;
 let score = 0;
 
 
-$(document).ready(function(){
+
     // Create an event listener to listen for a click on the Start Quiz button
+    function handleStartButtonClicked() {
     $(".start-btn").click(function(){
        $('.start-quiz').hide();
        $('.next').hide();
@@ -78,17 +81,22 @@ $(document).ready(function(){
         $('.score').text('SCORE: '+ score + '/5');
       console.log("Start Quiz button clicked");
     });
+  }
     
     // Create an event listener to listen for a click on the Next button
+    function handleNextButtonClicked() {
     $(".next-btn").click(function(event){
       console.log("Next button clicked");
       displayQuestion();
       $('.next').hide();
       $('.submit-container').show();
     });
+  }
     
     // Submit event listener to check answer and show the next question. It also
     // requires a selection to be made
+
+    function handleSubmitButtonClicked() {
     $(".submit-btn").click(function(event){
       if($('input.selected').length){
         var answer = $('input.selected').attr('id');
@@ -99,20 +107,24 @@ $(document).ready(function(){
         alert('Please select an answer');
       }
     });
+  }
     
     // Create an event listener to listen for a click on the Retake button and refresh the page
+    function handleRestartButtonClicked() {
     $(".restart-btn").click(function(){
     location.reload();
       console.log("Retake button clicked");
     });
-    
-    //Click listener when clicking on a list item to compare to the correct answer
+  }
+
+    //Click listener when clicking on a form item to compare to the correct answer
+    function handleformButtonClicked() {
     $('form.list').on('click', 'input', function(event) {
       $('.selected').removeClass();
       $(this).addClass('selected');
     });
-    
-  });
+  }
+
   
   // Function to render a question to the DOM
   function displayQuestion(){
@@ -150,4 +162,17 @@ $(document).ready(function(){
     $('.end-quiz').show();
     $('.end-score').text("DONE! Your score is: " +score + '/5');
   }
+
+  function handleQuiz() {
+    handleStartButtonClicked();
+    handleNextButtonClicked();
+    handleSubmitButtonClicked();
+    handleRestartButtonClicked();
+    handleformButtonClicked();
+    displayQuestion();
+    checkAnswer(answer);
+    displayScore()
+  }
+
+  $(handleQuiz);
   
