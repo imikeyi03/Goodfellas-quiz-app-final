@@ -30,7 +30,7 @@ const STORE = [
          {
             question: "3. What U.S city does Henry heavily distribute cocaine to?",
             choices: [
-                "Pittsburgh",
+                "Pittsburgh", //correct
                 "Los Angeles",
                 "Seattle",
                 "Dallas"
@@ -86,13 +86,21 @@ let score = 0;
     // Create an event listener to listen for a click on the Next button
     function handleNextButtonClicked() {
     $(".next-btn").click(function(event){
-      $('p.incorrect').text('');
+      $('p.incorrect').text('').hide();
       console.log("Next button clicked");
       displayQuestion();
+      $('p.niceJob').hide();
+      $('form.list').show();
       $('.next').hide();
       $('.submit-container').show();
     });
   }
+
+  // Look into implimenting this way of seeing if the answer is checked
+
+  // //$('#element').click(function() {
+  //  if($('#radio_button').is(':checked')) { alert("it's checked"); }
+  // });
     
     // Submit event listener to check answer and show the next question. It also
     // requires a selection to be made
@@ -101,6 +109,7 @@ let score = 0;
     $(".submit-btn").click(function(event){
       if($('input.selected').length){
         var answer = $('input.selected').attr('id');
+        console.log(answer);
         checkAnswer(answer);
         $('.next').show();
         $('.submit-container').hide();
@@ -129,13 +138,12 @@ let score = 0;
   
   // Function to render a question to the DOM
   function displayQuestion(){
-    $('.question-number').text('Question Number: '+(current + 1)+"/10" );
     if(current < STORE.length){
       var listQuestion = STORE[current];
       $('h2').text(listQuestion.question);
       $('form.list').html('');
       for (var i = 0; i < listQuestion.choices.length; i++) {
-        $('form.list').append('<input type="radio" name="answer" id = "'+i+'">'+listQuestion.choices[i] +'</input>');
+        $('form.list').append('<div><label><input type="radio" name="answer" id = "'+i+'" />'+listQuestion.choices[i] + '</label></div>');
       }
     } else {
       // show summary that says how many you got correct
@@ -146,12 +154,16 @@ let score = 0;
   // Checks answer from the array to see if the one chosen is the one that is correct
   function checkAnswer(answer){
     var listQuestion = STORE[current];
+    console.log(listQuestion);
+    console.log(listQuestion.correct)
+    $('form.list').hide();
     if(listQuestion.correct == answer){
       score++;
-      $('input.selected').addClass('correct');
+      $('p.niceJob').show();
     } else {
-      $('input.selected').addClass('incorrect');
-      $('p.incorrect').text('The correct answer is ' + listQuestion.choices[current]);
+      console.log(listQuestion.choices[listQuestion.correct]);
+      $('p.incorrect').show();
+      $('p.incorrect').text('The correct answer is ' + listQuestion.choices[listQuestion.correct]);
       $('listQuestion.correct').addClass('correct');
     }
     $('.score').text('SCORE: '+ score + '/5');
@@ -172,8 +184,6 @@ let score = 0;
     handleRestartButtonClicked();
     handleformButtonClicked();
     displayQuestion();
-    checkAnswer(answer);
-    displayScore();
   }
 
   $(handleQuiz);
